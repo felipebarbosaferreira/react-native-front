@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     },
 
     notification: {
-        right: 16,
+        width: 47,
+        right: 26,
         height: 40,
         marginRight: -10,
         display: 'flex',

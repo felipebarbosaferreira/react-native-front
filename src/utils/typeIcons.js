@@ -29,6 +29,10 @@ import {
     faDumbbell,
     faPlane,
     faQrcode,
+    faArrowLeft,
+    faPlus,
+    faSave,
+    faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 
 const iconDefault = 1,
@@ -45,7 +49,11 @@ const iconDefault = 1,
     iconBiking = 12,
     iconDumbbell = 13,
     iconTravel = 14,
-    iconQrCode = 15;
+    iconQrCode = 15,
+    iconArrowLeft = 16,
+    iconPlus = 17,
+    iconSave = 18,
+    iconCheck = 19;
 
 const mapIcons = new Map();
 mapIcons.set(iconDefault, faStickyNote);
@@ -64,6 +72,10 @@ mapIcons.set(iconBiking, faBiking);
 mapIcons.set(iconDumbbell, faDumbbell);
 mapIcons.set(iconTravel, faPlane);
 mapIcons.set(iconQrCode, faQrcode);
+mapIcons.set(iconArrowLeft, faArrowLeft);
+mapIcons.set(iconPlus, faPlus);
+mapIcons.set(iconSave, faSave);
+mapIcons.set(iconCheck, faCheck);
 
 const getIconByKey = (key) => {
     return mapIcons.get(key)
