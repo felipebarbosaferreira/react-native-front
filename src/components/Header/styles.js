@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
 
     notificationText: {
         color: '#EE6B26',
+        fontWeight: '600',
     },
 
     notificationCircle: {
@@ -48,6 +49,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         alignItems: 'center',
         alignSelf: 'flex-start',
+        justifyContent: 'center',
     },
 
     iconBell: {

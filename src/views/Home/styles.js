@@ -48,6 +48,12 @@ const styles = StyleSheet.create({
         top: 10,
         paddingHorizontal: 10,
     },
+
+    titleTextNoTask: {
+        fontSize: 18,
+        color: '#20295F',
+        alignSelf: 'center',
+    },
 });
 
 export default styles;

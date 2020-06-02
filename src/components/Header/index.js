@@ -12,7 +12,7 @@ const iconBell = 4;
 const iconQrCode = 15;
 const iconArrowLeft = 16;
 
-const Header = ({ showNotification = false, showBack = false }) => {
+const Header = ({ lateCount = 0, showBack = false, showNotification }) => {
     return (
         <View style={S.header}>
             { showBack
@@ -29,14 +29,14 @@ const Header = ({ showNotification = false, showBack = false }) => {
             <Image source={logo} style={S.logo} />
 
             
-            <TouchableOpacity style={S.notification}>
-                { showNotification && 
+            <TouchableOpacity style={S.notification} onPress={showNotification}>
+                { lateCount > 0 && 
                     <>
                         <View>
                             <FontAwesomeIcon icon={ getIconByKey(iconBell) } size={32} color='#EE6B26' />
                         </View>
                         <View style={S.notificationCircle} >
-                            <Text style={S.notificationText}>3</Text>
+                            <Text style={S.notificationText}>{lateCount}</Text>
                         </View>
                     </>
                 }
