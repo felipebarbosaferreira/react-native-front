@@ -11,11 +11,11 @@ const styles = StyleSheet.create({
 
     content: {
         flex: 1,
-        padding: 16,
         paddingBottom: 0,
     },
 
     filter: {
+        padding: 16,
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
@@ -31,6 +31,22 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#20295F',
         opacity: 0.5,
+    },
+
+    title: {
+        top: -10,
+        borderBottomWidth: 1,
+        borderColor: '#20295F',
+        alignItems: 'center',
+        marginVertical: 10,
+    },
+
+    titleText: {
+        fontSize: 18,
+        color: '#20295F',
+        backgroundColor: '#FFFFFF',
+        top: 10,
+        paddingHorizontal: 10,
     },
 });
 
