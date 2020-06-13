@@ -196,7 +196,7 @@ export default function Task({ navigation }) {
                             value={description} />
                         
                         <DateTimeInput save={setDate} when={when}/>
-                        <DateTimeInput save={setHour} when={when} type={'hour'}/>
+                        <DateTimeInput save={setHour} when={when} type={'time'}/>
 
                         {
                             idTask && 
