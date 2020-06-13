@@ -30,6 +30,7 @@ const TIME_FORMAT_TO_MONGODB = 'HH:mm:ss';
 export default function DateTimeInput({ type = DATE, save, when }){
     const [dateTime, setDateTime] = useState();
     const [date, setDate] = useState(new Date());
+    const [dateHasSelected, setDateHasSelected] = useState(false);
     const [show, setShow] = useState(false);
 
     function selectDate() {
@@ -57,7 +58,7 @@ export default function DateTimeInput({ type = DATE, save, when }){
             return;
         }
 
-        setDateTime(selectedDate);
+        setDateHasSelected(true);
         setDate(selectedDate);
     }
 
@@ -82,7 +83,7 @@ export default function DateTimeInput({ type = DATE, save, when }){
     useEffect(() => {
         setShow(Platform.OS === 'ios');
         when && setDateTimeFromTaskToEdit();
-        dateTime && applyValueSelected();
+        dateHasSelected && applyValueSelected();
     }, [when, date])
 
     return (

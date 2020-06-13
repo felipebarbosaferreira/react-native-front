@@ -56,7 +56,7 @@ const style = StyleSheet.create({
 
     optionsIntoRow: {
         marginTop: 20,
-        marginBottom: 5,
+        marginBottom: 50,
         marginHorizontal: 16,
         flexDirection: 'row',
         justifyContent: 'space-between',

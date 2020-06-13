@@ -54,6 +54,33 @@ const styles = StyleSheet.create({
         color: '#20295F',
         alignSelf: 'center',
     },
+
+    sectionList: {
+        display: 'flex',
+        flexDirection: 'row',
+        marginVertical: 1,
+        padding: 16,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: '#F8F8FF',
+        shadowColor: '#000000',
+        shadowOffset: {
+            width: 0,
+            height: 10,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 5,
+        elevation: 3,
+    },
+
+    sectionListLabel: {
+        fontSize: 15,
+        color: '#20295F',
+        minWidth: 30,
+    },
+
+    sectionListIcon: {
+    },
 });
 
 export default styles;

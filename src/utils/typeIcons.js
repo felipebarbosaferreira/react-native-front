@@ -33,6 +33,8 @@ import {
     faPlus,
     faSave,
     faCheck,
+    faChevronCircleDown,
+    faChevronCircleUp,
 } from '@fortawesome/free-solid-svg-icons';
 
 const iconDefault = 1,
@@ -53,7 +55,9 @@ const iconDefault = 1,
     iconArrowLeft = 16,
     iconPlus = 17,
     iconSave = 18,
-    iconCheck = 19;
+    iconCheck = 19,
+    iconChevronCircleDown = 20,
+    iconChevronCircleUp = 21;
 
 const mapIcons = new Map();
 mapIcons.set(iconDefault, faStickyNote);
@@ -76,6 +80,8 @@ mapIcons.set(iconArrowLeft, faArrowLeft);
 mapIcons.set(iconPlus, faPlus);
 mapIcons.set(iconSave, faSave);
 mapIcons.set(iconCheck, faCheck);
+mapIcons.set(iconChevronCircleDown, faChevronCircleDown);
+mapIcons.set(iconChevronCircleUp, faChevronCircleUp);
 
 const getIconByKey = (key) => {
     return mapIcons.get(key)
