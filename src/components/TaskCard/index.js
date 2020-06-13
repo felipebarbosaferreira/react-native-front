@@ -6,9 +6,9 @@ import { format } from 'date-fns';
 import S from './styles';
 import { getIconByKey } from '../../utils/typeIcons';
 
-const TaskCard = ({ done = false, type = 0, title = '', when = '', }) => {
+const TaskCard = ({ done = false, type = 0, title = '', when = '', onPress }) => {
     return (
-        <TouchableOpacity style={[ S.content, done && S.done ]} >
+        <TouchableOpacity style={[ S.content, done && S.done ]} onPress={onPress} >
             <View style={S.card} >
                 <View style={S.cardLeft} >
                     <View style={S.icon}>

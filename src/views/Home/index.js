@@ -4,8 +4,9 @@ import {
     Text, 
     TouchableOpacity, 
     ScrollView, 
-    ActivityIndicator 
+    ActivityIndicator,
 } from 'react-native';
+import * as Network from 'expo-network';
 
 import api from '../../services/api';
 
@@ -15,16 +16,25 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import TaskCard from '../../components/TaskCard';
 
-export default function Home() {
+export default function Home({ navigation }) {
     const [filter, setFilter] = useState('today');
     const [tasks, setTasks] = useState([]);
-    const [loadTasksOnProgress, setLoadTasksOnProgress] = useState(false);
+    const [loadTasksOnProgress, setLoadTasksOnProgress] = useState(true);
     const [lateCount, setLateCount] = useState(0);
+    const [macaddress, setMacaddress] = useState();
+
+    async function getMacaddress() {
+        await Network
+            .getMacAddressAsync()
+            .then(mac => {
+                setMacaddress(mac)
+            })
+    }
 
     async function loadTasks() {
         setLoadTasksOnProgress(true);
         await api
-            .get(`/task/filter/${filter}/00:19:B9:FB:E2:58`)
+            .get(`/task/filter/${filter}/${macaddress}`)
             .then( response => {
                 setTasks(response.data);
             })
@@ -37,7 +47,7 @@ export default function Home() {
 
     async function lateVerify() {
         await api
-            .get(`/task/filter/late/00:19:B9:FB:E2:58`)
+            .get(`/task/filter/late/${macaddress}`)
             .then( response => {
                 setLateCount(response.data.length);
             })
@@ -50,14 +60,26 @@ export default function Home() {
         setFilter('late');
     }
 
+    function newTask() {
+        navigation.navigate('Task');
+    }
+
+    function showDetailTask(idTask) {
+        navigation.navigate('Task', {idTask: idTask});
+    }
+
     useEffect(() => {
-        lateVerify();
-        loadTasks();
-    }, [filter])
+        if (macaddress) {
+            lateVerify()
+            loadTasks()
+        } else {
+            getMacaddress();
+        }
+    }, [filter, macaddress])
 
     return (
         <View style={S.container}>
-            <Header lateCount={lateCount} showNotification={showNotification} />
+            <Header lateCount={lateCount} showNotification={showNotification} navigation={navigation}/>
             <View style={S.content}>
                 <View style={S.filter}>
                     <TouchableOpacity onPress={() => setFilter('all')}>
@@ -95,7 +117,8 @@ export default function Home() {
                                         type={t.type} 
                                         title={t.title} 
                                         when={t.when} 
-                                        key={t._id} />
+                                        key={t._id}
+                                        onPress={() => showDetailTask(t._id)} />
                                 ))
                             }
                             {
@@ -105,7 +128,7 @@ export default function Home() {
                 }
                 
             </View>
-            <Footer />
+            <Footer onPress={newTask}/>
         </View>
     )
 }

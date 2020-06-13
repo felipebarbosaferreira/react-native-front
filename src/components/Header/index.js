@@ -12,16 +12,25 @@ const iconBell = 4;
 const iconQrCode = 15;
 const iconArrowLeft = 16;
 
-const Header = ({ lateCount = 0, showBack = false, showNotification }) => {
+const Header = ({ lateCount = 0, showBack = false, showNotification, navigation }) => {
+
+    function returnToHome() {
+        navigation.navigate('Home');
+    }
+
+    function goToQrCodeView() {
+        navigation.navigate('QrCode');
+    }
+
     return (
         <View style={S.header}>
             { showBack
                 ?
-                    <TouchableOpacity style={S.leftIcon}>
+                    <TouchableOpacity style={S.leftIcon} onPress={returnToHome}>
                         <FontAwesomeIcon icon={ getIconByKey(iconArrowLeft) } size={32} color='#EE6B26' />
                     </TouchableOpacity>
                 :
-                    <TouchableOpacity style={S.leftIcon}>
+                    <TouchableOpacity style={S.leftIcon} onPress={goToQrCodeView}>
                         <FontAwesomeIcon icon={ getIconByKey(iconQrCode) } size={32} color='#EE6B26' />
                     </TouchableOpacity>
             }
