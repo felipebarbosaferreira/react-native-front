@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
     TouchableOpacity, 
     TextInput,
+    View,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { format } from 'date-fns';
@@ -80,38 +81,8 @@ export default function DateTimeInput({ type = DATE, save, when }){
         }
     }
 
-    useEffect(() => {
-        setShow(Platform.OS === 'ios');
-        when && setDateTimeFromTaskToEdit();
-        dateHasSelected && applyValueSelected();
-    }, [when, date])
-
-    return (
-        <TouchableOpacity onPress={showPicker} style={S.content}>
-            {
-                show && (
-                    <DateTimePicker
-                        testID="dateTimePicker"
-                        value={date}
-                        mode={ isShowDate() ? DATE : TIME }
-                        is24Hour={true}
-                        display={ isShowDate() ? CALENDAR : CLOCK }
-                        onChange={onChange}
-                        minimumDate={new Date()}
-                    />
-                )
-            }
-            <TextInput 
-                style={S.input} 
-                placeholder={
-                    isShowDate() 
-                    ? 'E que dia vai ser?'
-                    : 'E a hora...'
-                }
-                editable={false}
-                value={dateTime}
-            /> 
-
+    _renderIcon = () => {
+        return (
             <FontAwesomeIcon 
                 icon={ 
                     isShowDate() 
@@ -121,6 +92,62 @@ export default function DateTimeInput({ type = DATE, save, when }){
                 size={24} 
                 color='#20295F'
             />
-        </TouchableOpacity>
+        );
+    };
+
+    _renderDateTimePicker = () => {
+        return (
+            <View>
+                <DateTimePicker
+                    testID="dateTimePicker"
+                    textColor="#20295F"
+                    value={date}
+                    mode={ isShowDate() ? DATE : TIME }
+                    is24Hour={true}
+                    display={ isShowDate() ? CALENDAR : CLOCK }
+                    onChange={onChange}
+                    minimumDate={new Date()}
+                    style={{width: '100%', backgroundColor: '#F8F8FF'}}
+                />
+            </View>
+        );
+    };
+
+    useEffect(() => {
+        setShow(Platform.OS === 'ios');
+        when && setDateTimeFromTaskToEdit();
+        dateHasSelected && applyValueSelected();
+    }, [when, date])
+
+    return (
+        Platform.OS === 'ios' 
+        ?
+            <View style={S.content}>
+                {
+                    show && _renderDateTimePicker()
+                }
+                {
+                    _renderIcon()
+                }
+            </View>
+        :
+            <TouchableOpacity onPress={showPicker} style={S.content}>
+                {
+                    show && _renderDateTimePicker()
+                }
+                <TextInput 
+                    style={S.input} 
+                    placeholder={
+                        isShowDate() 
+                        ? 'E que dia vai ser?'
+                        : 'E a hora...'
+                    }
+                    editable={false}
+                    value={dateTime}
+                /> 
+                {
+                    _renderIcon()
+                }
+            </TouchableOpacity>
     )
 };

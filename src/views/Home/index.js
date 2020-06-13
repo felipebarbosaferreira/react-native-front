@@ -109,9 +109,9 @@ export default function Home({ navigation }) {
             <View style={S.sectionListIcon}>
             {
                 isShowItems ?
-                    <FontAwesomeIcon icon={ getIconByKey(iconChevronCircleUp) } size={32} color='#EE6B26' />
-                :
                     <FontAwesomeIcon icon={ getIconByKey(iconChevronCircleDown) } size={32} color='#EE6B26' />
+                :
+                    <FontAwesomeIcon icon={ getIconByKey(iconChevronCircleUp) } size={32} color='#EE6B26' />
             }
             </View>
         );
