@@ -18,11 +18,12 @@ export default function QrCode({navigation}) {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [macaddress, setMacaddress] = useState();
+    const [mac, setMac] = useState(true);
 
     async function getMacaddress() {
         await NetWork
             .getMacAddressAsync()
-            .then(mac => Alert.alert(`Digite o código ${mac} para sincronizar.`))
+            .then(mac => setMac(mac))
             .catch(error => {
                 console.log(`Erro ao obter o macaddress no QrCode`);
             })
@@ -38,7 +39,7 @@ export default function QrCode({navigation}) {
         if (data === 'getmacaddress') {
             getMacaddress();
         } else {
-            Alert.alert('QrCode inválido :(')
+            Alert.alert('QrCode inválido, tente novamente.')
         }
     };
 
@@ -48,7 +49,8 @@ export default function QrCode({navigation}) {
 
     useEffect(() => {
         verifyPermissionBarCodeScanner();
-    }, [macaddress]);
+        setMac(false);
+    }, [macaddress, scanned]);
     
     return (
         <View style={S.container}>
@@ -57,6 +59,17 @@ export default function QrCode({navigation}) {
                 <Text style={S.labelText}>
                     Conectar com a minha conta na web
                 </Text>
+                {
+                    mac &&
+                    <View style={S.infoToSynchronize}>
+                        <Text style={S.infoToSynchronizeText}>
+                            Use o código abaixo para sincronizar.
+                        </Text>
+                        <Text style={S.infoToSynchronizeCode}>
+                           {mac}
+                        </Text>
+                    </View>
+                }
                 <BarCodeScanner 
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                     style={S.barCodeScanner} />

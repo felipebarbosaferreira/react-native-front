@@ -78,7 +78,28 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontWeight: 'bold',
         fontSize: 16,
-    }
+    },
+
+    infoToSynchronize: {
+        display: 'flex',
+        alignItems: 'center',
+        margin: 16,
+    },
+
+    infoToSynchronizeText: {
+        color: '#20295F',
+    },
+
+    infoToSynchronizeCode: {
+        marginTop: 10,
+        padding: 10,
+        borderRadius: 10,
+        backgroundColor: '#EEEEEE',
+        fontWeight: 'bold',
+        color: '#20295F',
+        letterSpacing: 3,
+        fontSize: 18,
+    },
 });
 
 export default styles;
