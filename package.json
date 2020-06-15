@@ -1,5 +1,8 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "version": "1.0.0",
+  "author": "Felipe Barbosa Ferreira",
+  "description": "Projeto TODO para estudo do React Native utilizando a api com NodeJS e MongoDB",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
